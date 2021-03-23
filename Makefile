@@ -148,6 +148,16 @@ install: all
 		$(INSTALL_MAN) man/$$name $(DESTDIR)$(MANDIR)/man$$section ; \
 	done
 
+uninstall: all
+	rm $(DESTDIR)$(LIBDIR)/pkgconfig/lowdown.pc
+	rm $(DESTDIR)$(LIBDIR)/liblowdown.a
+	rm $(DESTDIR)$(BINDIR)/lowdown
+	rm $(DESTDIR)$(BINDIR)/lowdown-diff
+	rm $(DESTDIR)$(INCLUDEDIR)/lowdown.h
+	rm $(DESTDIR)$(MANDIR)/man1/lowdown*
+	rm $(DESTDIR)$(MANDIR)/man3/lowdown*
+	rm $(DESTDIR)$(MANDIR)/man5/lowdown*
+
 distcheck: lowdown.tar.gz.sha512
 	mandoc -Tlint -Werror man/*.[135]
 	newest=`grep "<h1>" versions.xml | tail -1 | sed 's![ 	]*!!g'` ; \
